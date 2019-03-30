@@ -112,14 +112,21 @@ public class Medicament {
     public void setCodemedoc(String codemedoc) {
         this.codemedoc = codemedoc;
     }
-
+/**
+ * hashCode idmedoc
+ * @return hash de l'id du médicmanet
+ */
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 97 * hash + this.idmedoc;
         return hash;
     }
-
+/**
+ * equals idmedoc
+ * @param obj le médicament
+ * @return si id trouvé ou non
+ */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

@@ -139,11 +139,18 @@ public class MedicamentDAOTest {
     @Test
     public void testDelete() throws Exception {
         System.out.println("delete");
-        Medicament obj = null;
+        Medicament obj = new Medicament(0, "TestNom", "TestDesc", "TCode");
         MedicamentDAO instance = new MedicamentDAO();
+        instance.setConnection(dbConnect);
+        obj = instance.create(obj);
         instance.delete(obj);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try {
+            instance.read(obj.getIdmedoc());   //on regarde si l'objet a bien été supp car on est pas sensé récup qlqch
+            fail("exception de record introuvable non générée");
+        } catch (SQLException e) {
+        }
+        //TODO vérifier qu'on a bien une exception en cas de record parent de clé étrangère (par exemple table commande) = créer client, créer commande avec id client tester puis tout effacer
+        //TODO effacer record inexistant
     }
 
     /**
@@ -151,14 +158,26 @@ public class MedicamentDAOTest {
      */
     @Test
     public void testRechDesc() throws Exception {
-        System.out.println("rechDesc");
-        String descrech = "";
+        //d abord avoir développé la méthode equals dans Medicament
+        System.out.println("rechNom");
+        //créer 2 médicaments avec même description 
+        Medicament obj1 = new Medicament(0, "TestNom", "testDesc", "Code");
+        Medicament obj2 = new Medicament(0, "TestNom2", "testDesc", "Code2");
+        String descrech = "TEST";
         MedicamentDAO instance = new MedicamentDAO();
-        List<Medicament> expResult = null;
-        List<Medicament> result = instance.rechDesc(descrech);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.setConnection(dbConnect);
+        obj1 = instance.create(obj1);
+        obj2 = instance.create(obj2);
+        List<Medicament> result = instance.rechDesc(descrech.toLowerCase());
+        if (result.indexOf(obj1) < 0) {
+            fail("obj1 introuvable " + obj1);    //obj1 dans la liste ? basé sur id retour -1 si existe pas
+        }
+        if (result.indexOf(obj2) < 0) {
+            fail("obj2 introuvable" + obj2);     //obj2 dans la liste ?
+        }
+        instance.delete(obj1);
+        instance.delete(obj2);
+        //TODO tester si mot n'est pas dans description
     }
 
     /**
@@ -166,13 +185,30 @@ public class MedicamentDAOTest {
      */
     @Test
     public void testAff() throws Exception {
-        System.out.println("aff");
+        /*System.out.println("aff");
         MedicamentDAO instance = new MedicamentDAO();
         List<Medicament> expResult = null;
         List<Medicament> result = instance.aff();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        fail("The test case is a prototype.");*/
+
+        Medicament obj1 = new Medicament(0, "TestNom", "testDesc", "Code");
+        Medicament obj2 = new Medicament(0, "TestNom2", "testDesc", "Code2");
+        MedicamentDAO instance = new MedicamentDAO();
+        instance.setConnection(dbConnect);
+        obj1 = instance.create(obj1);
+        obj2 = instance.create(obj2);
+        List<Medicament> result = instance.aff();
+        if (result.indexOf(obj1) < 0) {
+            fail("obj1 introuvable " + obj1);    //obj1 dans la liste ? basé sur id retour -1 si existe pas
+        }
+        if (result.indexOf(obj2) < 0) {
+            fail("obj2 introuvable" + obj2);     //obj2 dans la liste ?
+        }
+        instance.delete(obj1);
+        instance.delete(obj2);
+        //TODO tester affichage si rien dans liste
     }
 
 }
