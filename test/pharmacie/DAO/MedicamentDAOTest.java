@@ -175,9 +175,16 @@ public class MedicamentDAOTest {
         if (result.indexOf(obj2) < 0) {
             fail("obj2 introuvable" + obj2);     //obj2 dans la liste ?
         }
+        //tester si mot n'est pas dans description
+        descrech = "none";
+        try {
+            result = instance.rechDesc(descrech.toLowerCase());
+            fail("exception de record introuvable non générée");
+        } catch (SQLException e) {
+        }
         instance.delete(obj1);
         instance.delete(obj2);
-        //TODO tester si mot n'est pas dans description
+
     }
 
     /**
@@ -185,14 +192,6 @@ public class MedicamentDAOTest {
      */
     @Test
     public void testAff() throws Exception {
-        /*System.out.println("aff");
-        MedicamentDAO instance = new MedicamentDAO();
-        List<Medicament> expResult = null;
-        List<Medicament> result = instance.aff();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");*/
-
         Medicament obj1 = new Medicament(0, "TestNom", "testDesc", "Code");
         Medicament obj2 = new Medicament(0, "TestNom2", "testDesc", "Code2");
         MedicamentDAO instance = new MedicamentDAO();
@@ -208,7 +207,14 @@ public class MedicamentDAOTest {
         }
         instance.delete(obj1);
         instance.delete(obj2);
-        //TODO tester affichage si rien dans liste
+        //tester affichage si rien dans liste      
+        result = instance.aff();
+        if (result.indexOf(obj1) >= 0) {
+            fail("liste non vide");    //obj1 dans la liste ? basé sur id retour -1 si existe pas
+        }
+        if (result.indexOf(obj2) >= 0) {
+            fail("liste non vide");     //obj2 dans la liste ?
+        }
     }
 
 }
