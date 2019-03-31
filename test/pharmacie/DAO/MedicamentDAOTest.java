@@ -7,6 +7,7 @@ package pharmacie.DAO;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import myconnections.DBConnection;
 import org.junit.After;
@@ -16,6 +17,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import pharmacie.metier.Medicament;
+import pharmacie.metier.Infos;
+import pharmacie.metier.Prescription;
+import pharmacie.metier.Medecin;
+import pharmacie.metier.Patient;
 
 /**
  *
@@ -149,8 +154,56 @@ public class MedicamentDAOTest {
             fail("exception de record introuvable non générée");
         } catch (SQLException e) {
         }
-        //TODO vérifier qu'on a bien une exception en cas de record parent de clé étrangère (par exemple table commande) = créer client, créer commande avec id client tester puis tout effacer
-        //TODO effacer record inexistant
+        //effacer record inexistant
+        try {
+            instance.delete(obj);
+            fail("exception de record introuvable non générée");
+        } catch (SQLException e) {
+
+        }
+        //vérifier qu'on a bien une exception en cas de record parent de clé étrangère 
+        //(par exemple table commande) = créer client, créer commande avec id client tester puis tout effacer
+        //il faut donc créer un médecin, un patient, un médicament, une presciption et enfin une infos (tout ceci relié).
+        //ensuite tenter de supprimer le médicament sans avoir supprimé l'info ni aucun autre élément et voir si l'erreur est bien mentionnée
+
+        obj = instance.create(obj);
+
+        Patient pat = new Patient(0, "TestNom", "testPrenom", "0XXX/XX.XX.XX");
+        PatientDAO patInstance = new PatientDAO();
+        patInstance.setConnection(dbConnect);
+        pat = patInstance.create(pat);
+
+        Medecin med = new Medecin(0, "testM", "TestNom", "TestPrenom", "0XXX/XX.XX.XX");
+        MedecinDAO medInstance = new MedecinDAO();
+        medInstance.setConnection(dbConnect);
+        med = medInstance.create(med);
+
+        int a = 2009;
+        int m = 9;
+        int j = 9;
+        LocalDate dt = LocalDate.of(a, m, j);
+        Prescription pres = new Prescription(0, dt, med.getIdmed(), pat.getIdpat());  //prescription via le patient créé et le médecin créé
+        PrescriptionDAO presInstance = new PrescriptionDAO();
+        presInstance.setConnection(dbConnect);
+        pres = presInstance.create(pres);
+
+        Infos info = new Infos("TestUnite", 1, pres.getIdpres(), obj.getIdmedoc(), 0);  //id à 0, id prescription issu de la presciption créée, pareil pour médoc
+        InfosDAO infoInstance = new InfosDAO();
+        infoInstance.setConnection(dbConnect);
+        info = infoInstance.create(info);
+
+        //maintenant le médicament étant clé étrangère de la table infos, on va tenter de supprimer le médicament
+        try {
+            instance.delete(obj);
+            fail("exception de contrainte d'intégrité non générée");
+        } catch (SQLException e) {
+
+            infoInstance.deleteForMedoc(obj);
+            instance.delete(obj);
+        }
+        presInstance.delete(pres);
+        patInstance.delete(pat);
+        medInstance.delete(med);
     }
 
     /**

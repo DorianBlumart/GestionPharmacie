@@ -52,8 +52,7 @@ public class InfosDAO extends DAO<Infos> {
     @Override
     public Infos create(Infos obj) throws SQLException {
         String req1 = "insert into api_infos(unite,quantite,idpres,idmedoc) values(?,?,?,?)";
-        //String req2 = "select idinfos from api_infos where idpres=? and idmedoc=?";
-        try (PreparedStatement pstm1 = dbConnect.prepareStatement(req1); /*PreparedStatement pstm2 = dbConnect.prepareStatement(req2)*/) {
+        try (PreparedStatement pstm1 = dbConnect.prepareStatement(req1);) {
             pstm1.setString(1, obj.getUnite());
             pstm1.setInt(2, obj.getQuantite());
             pstm1.setInt(3, obj.getIdpres());
