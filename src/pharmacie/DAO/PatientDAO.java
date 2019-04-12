@@ -109,7 +109,7 @@ public class PatientDAO extends DAO<Patient> {
             pstm.setInt(1, obj.getIdpat());
             int n = pstm.executeUpdate();
             if (n == 0) {
-                throw new SQLException("aucune ligne client effacée");
+                throw new SQLException("aucune ligne patient effacée");
             }
 
         }

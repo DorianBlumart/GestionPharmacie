@@ -109,7 +109,7 @@ public class MedicamentDAO extends DAO<Medicament> {
             pstm.setInt(1, obj.getIdmedoc());
             int n = pstm.executeUpdate();
             if (n == 0) {
-                throw new SQLException("aucune ligne client effacée");
+                throw new SQLException("aucune ligne médicament effacée");
             }
 
         }
