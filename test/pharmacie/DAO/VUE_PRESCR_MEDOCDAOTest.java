@@ -107,7 +107,7 @@ public class VUE_PRESCR_MEDOCDAOTest {
             presInstance.delete(pres);
             patInstance.delete(pat);
             medInstance.delete(med);
-            fail("on a pas su read");
+            fail("on a pas su read"+e);
         }       
         /***************************** Ne fonctionne pas*******************************************************************/
         
