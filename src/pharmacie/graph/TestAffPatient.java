@@ -8,27 +8,28 @@ package pharmacie.graph;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import myconnections.DBConnection;
-import pharmacie.DAO.MedicamentDAO;
+import pharmacie.DAO.PatientDAO;
 
 /**
  *
  * @author Dorian
  */
-public class TestCreaMedicament extends javax.swing.JFrame {
+public class TestAffPatient extends javax.swing.JFrame {
 
     /**
-     * Creates new form TestCreaMedicament
+     * Creates new form TestAffPatient
      */
-    public TestCreaMedicament() {
+    public TestAffPatient() {
         initComponents();
         Connection dbConnect = DBConnection.getConnection();
         if (dbConnect == null) {
             System.out.println("connection invalide");
             JOptionPane.showMessageDialog(this, "connexion invalide", "ERREUR", JOptionPane.ERROR_MESSAGE);
         }
-        MedicamentDAO medicamentDAO = new MedicamentDAO();
-        medicamentDAO.setConnection(dbConnect);
-        creaMedicament.setMedicamentDAO(medicamentDAO);
+
+        PatientDAO patientDAO = new PatientDAO();
+        patientDAO.setConnection(dbConnect);
+        affPatient.setPatientDAO(patientDAO);
     }
 
     /**
@@ -40,7 +41,7 @@ public class TestCreaMedicament extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        creaMedicament = new pharmacie.graph.CreaMedicament();
+        affPatient = new pharmacie.graph.AffPatient();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,15 +50,14 @@ public class TestCreaMedicament extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(creaMedicament, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 10, Short.MAX_VALUE)
+                .addComponent(affPatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(creaMedicament, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(affPatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -80,25 +80,25 @@ public class TestCreaMedicament extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TestCreaMedicament.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestAffPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TestCreaMedicament.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestAffPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TestCreaMedicament.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestAffPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TestCreaMedicament.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestAffPatient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TestCreaMedicament().setVisible(true);
+                new TestAffPatient().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pharmacie.graph.CreaMedicament creaMedicament;
+    private pharmacie.graph.AffPatient affPatient;
     // End of variables declaration//GEN-END:variables
 }

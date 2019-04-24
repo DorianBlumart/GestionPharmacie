@@ -162,11 +162,11 @@ public class GestionPatient {
             patientDAO.delete(patActuel);
             System.out.println("\nPatient bien supprimé");
         } catch (SQLException e) {
-             if (e.getMessage().contains("int")) {   //erreur d'intégrité
-                 System.out.println("Vous ne pouvez pas supprimer un patient déjà renseigné dans une prescription, veuillez d'abord supprimer sa/ses prescription(s)");
-             }
-             else
+            if (e.getMessage().contains("int")) {   //erreur d'intégrité
+                System.out.println("Vous ne pouvez pas supprimer un patient déjà renseigné dans une prescription, veuillez d'abord supprimer sa/ses prescription(s)");
+            } else {
                 System.out.println("\nErreur :" + e.getMessage());
+            }
         }
 
     }
@@ -203,6 +203,20 @@ public class GestionPatient {
 
         } while (!saisie.matches(expr));
         return saisie;
+    }
+
+    public void rech() throws SQLException {
+        System.out.println("nom à chercher?");
+        String nomrech = sc.nextLine();
+        try {
+            List<Patient> listePatient = ((PatientDAO) patientDAO).rechNom(nomrech);
+            System.out.println("Voici la liste:");
+            for (Patient m : listePatient) {//meilleure manière pour afficher liste c'est léquivalent du foreach
+                System.out.println(m + "\n");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur: " + e.getMessage());
+        }
     }
 
 }

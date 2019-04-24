@@ -145,4 +145,38 @@ public class PatientDAO extends DAO<Patient> {
         }
     }
 
+    /**
+     * méthode permettant de récupérer tous les patients portant un certain nom
+     *
+     * @param nomrech nom recherché
+     * @return liste de patients
+     * @throws SQLException nom inconnu
+     */
+    public List<Patient> rechNom(String nomrech) throws SQLException {
+        List<Patient> plusieurs = new ArrayList<>();
+        String req = "select * from api_patient where nom = ?";
+
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            pstm.setString(1, nomrech);
+            try (ResultSet rs = pstm.executeQuery()) {
+                boolean trouve = false;
+                while (rs.next()) {
+                    trouve = true;
+                    int idpat = rs.getInt("idpat");
+                    String nom = rs.getString("nom");
+                    String prenom = rs.getString("prenom");
+                    String tel = rs.getString("tel");
+                    plusieurs.add(new Patient(idpat, nom, prenom, tel));
+                }
+
+                if (!trouve) {
+                    throw new SQLException("nom inconnu");
+                } else {
+                    return plusieurs;
+                }
+            }
+        }
+
+    }
+
 }
