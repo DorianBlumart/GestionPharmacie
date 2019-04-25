@@ -42,7 +42,7 @@
                                   <Component id="txtnom" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="btrech" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
+                          <Component id="btrech" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>

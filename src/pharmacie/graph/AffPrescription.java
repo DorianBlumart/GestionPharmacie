@@ -10,33 +10,44 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pharmacie.DAO.PatientDAO;
-import pharmacie.metier.Patient;
+import pharmacie.DAO.PrescriptionDAO;
+import pharmacie.DAO.VUE_PRESCR_MEDOCDAO;
+import pharmacie.metier.Prescription;
+import pharmacie.metier.VUE_PRESCR_MEDOC;
 
 /**
  *
  * @author Michel
  */
-public class AffPatient extends javax.swing.JPanel {
+public class AffPrescription extends javax.swing.JPanel {
 
     /**
      * Creates new form RechNom
      */
-    PatientDAO patientDAO = null;
+    PrescriptionDAO prescriptionDAO = null;
+    VUE_PRESCR_MEDOCDAO vueDAO = null;
     DefaultTableModel dft1 = new DefaultTableModel();
 
-    public AffPatient() {
+    public AffPrescription() {
         initComponents();
-        dft1.addColumn("numéro");
+        dft1.addColumn("numéro de la prescription");
+        dft1.addColumn("date");
+        dft1.addColumn("numéro du médecin");
+        dft1.addColumn("numéro du patient");
+        dft1.addColumn("numéro du médicament");
         dft1.addColumn("nom");
-        dft1.addColumn("prénom");
-        dft1.addColumn("téléphone");
+        dft1.addColumn("code");
+        dft1.addColumn("description");
         jTable1.setModel(dft1);
 
     }
 
-    public void setPatientDAO(PatientDAO patientDAO) {
-        this.patientDAO = patientDAO;
+    public void setPrescriptionDAO(PrescriptionDAO prescriptionDAO) {
+        this.prescriptionDAO = prescriptionDAO;
+    }
+    
+    public void setVUE_PRESCR_MEDOCDAO(VUE_PRESCR_MEDOCDAO vueDAO) {
+        this.vueDAO = vueDAO;
     }
 
     /**
@@ -54,13 +65,13 @@ public class AffPatient extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -78,11 +89,11 @@ public class AffPatient extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btaff)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 672, Short.MAX_VALUE)
+                        .addComponent(btaff))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -99,17 +110,21 @@ public class AffPatient extends javax.swing.JPanel {
     private void btaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btaffActionPerformed
 
         try {
-            List<Patient> alc = patientDAO.aff();
+            List<VUE_PRESCR_MEDOC> alc = vueDAO.aff();
             int nr = dft1.getRowCount();
             for (int i = nr - 1; i >= 0; i--) {
                 dft1.removeRow(i);
             }
-            for (Patient cl : alc) {
+            for (VUE_PRESCR_MEDOC cl : alc) {
                 Vector v = new Vector();
+                v.add(cl.getIdpres());
+                v.add(cl.getDateprescription());
+                v.add(cl.getIdmedecin());
                 v.add(cl.getIdpat());
+                v.add(cl.getIdmedoc());
                 v.add(cl.getNom());
-                v.add(cl.getPrenom());
-                v.add(cl.getTel());
+                v.add(cl.getCodemedoc());
+                v.add(cl.getDescription());
                 dft1.addRow(v);
 
             }
