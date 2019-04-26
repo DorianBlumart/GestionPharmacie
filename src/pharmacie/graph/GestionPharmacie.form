@@ -47,6 +47,24 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Prescriptions"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuRechNumPres">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Recherche exacte (via id)"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuRechNumPresActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuAffPres">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Afficher totalit&#xe9;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuAffPresActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
@@ -99,6 +117,20 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="cardRechNumPat"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="pharmacie.graph.AffPrescription" name="affPrescription">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardAffPres"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="pharmacie.graph.RechPresNum" name="rechPresNum">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardRechNumPres"/>
         </Constraint>
       </Constraints>
     </Component>
