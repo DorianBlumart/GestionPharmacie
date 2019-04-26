@@ -42,10 +42,12 @@ public class GestionPharmacie extends javax.swing.JFrame {
         affPatient.setPatientDAO(patientDAO);
         rechPatNom.setPatientDAO(patientDAO);
         rechPatNum.setPatientDAO(patientDAO);
+        rechPresPat.setPatientDAO(patientDAO);
         
         VUE_PRESCR_MEDOCDAO vueDAO = new VUE_PRESCR_MEDOCDAO();
         vueDAO.setConnection(dbConnect);
         affPrescription.setVUE_PRESCR_MEDOCDAO(vueDAO);
+        rechPresPat.setVUE_PRESCR_MEDOCDAO(vueDAO);
         
         PrescriptionDAO prescriptionDAO = new PrescriptionDAO();
         prescriptionDAO.setConnection(dbConnect);
@@ -72,6 +74,7 @@ public class GestionPharmacie extends javax.swing.JFrame {
         rechPatNum = new pharmacie.graph.RechPatNum();
         affPrescription = new pharmacie.graph.AffPrescription();
         rechPresNum = new pharmacie.graph.RechPresNum();
+        rechPresPat = new pharmacie.graph.RechPresPat();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuPat = new javax.swing.JMenu();
         jMenuItemCrea = new javax.swing.JMenuItem();
@@ -80,6 +83,7 @@ public class GestionPharmacie extends javax.swing.JFrame {
         jMenuItemAff = new javax.swing.JMenuItem();
         jMenuPres = new javax.swing.JMenu();
         jMenuRechNumPres = new javax.swing.JMenuItem();
+        jMenuRechPatPres = new javax.swing.JMenuItem();
         jMenuAffPres = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,6 +94,7 @@ public class GestionPharmacie extends javax.swing.JFrame {
         getContentPane().add(rechPatNum, "cardRechNumPat");
         getContentPane().add(affPrescription, "cardAffPres");
         getContentPane().add(rechPresNum, "cardRechNumPres");
+        getContentPane().add(rechPresPat, "cardRechPatPres");
 
         jMenuPat.setText("Patients");
 
@@ -137,6 +142,14 @@ public class GestionPharmacie extends javax.swing.JFrame {
         });
         jMenuPres.add(jMenuRechNumPres);
 
+        jMenuRechPatPres.setText("Recherche large (via patient)");
+        jMenuRechPatPres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuRechPatPresActionPerformed(evt);
+            }
+        });
+        jMenuPres.add(jMenuRechPatPres);
+
         jMenuAffPres.setText("Afficher totalité");
         jMenuAffPres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,6 +188,10 @@ public class GestionPharmacie extends javax.swing.JFrame {
     private void jMenuRechNumPresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRechNumPresActionPerformed
         cl.show(this.getContentPane(), "cardRechNumPres");
     }//GEN-LAST:event_jMenuRechNumPresActionPerformed
+
+    private void jMenuRechPatPresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRechPatPresActionPerformed
+        cl.show(this.getContentPane(), "cardRechPatPres");
+    }//GEN-LAST:event_jMenuRechPatPresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,8 +241,10 @@ public class GestionPharmacie extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuPat;
     private javax.swing.JMenu jMenuPres;
     private javax.swing.JMenuItem jMenuRechNumPres;
+    private javax.swing.JMenuItem jMenuRechPatPres;
     private pharmacie.graph.RechPatNom rechPatNom;
     private pharmacie.graph.RechPatNum rechPatNum;
     private pharmacie.graph.RechPresNum rechPresNum;
+    private pharmacie.graph.RechPresPat rechPresPat;
     // End of variables declaration//GEN-END:variables
 }

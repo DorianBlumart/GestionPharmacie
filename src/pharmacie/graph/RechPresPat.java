@@ -1,4 +1,3 @@
-
 package pharmacie.graph;
 
 import java.util.ArrayList;
@@ -6,27 +5,35 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pharmacie.DAO.PatientDAO;
 import pharmacie.DAO.VUE_PRESCR_MEDOCDAO;
+import pharmacie.metier.Patient;
 import pharmacie.metier.VUE_PRESCR_MEDOC;
 
+public class RechPresPat extends javax.swing.JPanel {
 
-public class AffPrescription extends javax.swing.JPanel {
-
+    PatientDAO patientDAO = null;
+    Patient pat = null;
     VUE_PRESCR_MEDOCDAO vueDAO = null;
     DefaultTableModel dft1 = new DefaultTableModel();
 
-    public AffPrescription() {
+    public RechPresPat() {
         initComponents();
+        dft1.addColumn("nom patient");
+        dft1.addColumn("prénom patient");
         dft1.addColumn("num prescription");
         dft1.addColumn("date");
         dft1.addColumn("num médecin");
-        dft1.addColumn("num patient");
         dft1.addColumn("num médoc");
         dft1.addColumn("nom médoc");
-        dft1.addColumn("code médoc");
         jTable1.setModel(dft1);
 
     }
+
+    public void setPatientDAO(PatientDAO patientDAO) {
+        this.patientDAO = patientDAO;
+    }
+
     public void setVUE_PRESCR_MEDOCDAO(VUE_PRESCR_MEDOCDAO vueDAO) {
         this.vueDAO = vueDAO;
     }
@@ -35,9 +42,18 @@ public class AffPrescription extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblnumpat = new javax.swing.JLabel();
+        txtnumpat = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btaff = new javax.swing.JButton();
+
+        lblnumpat.setText("Numéro du patient");
+
+        txtnumpat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnumpatActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,63 +76,65 @@ public class AffPrescription extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        btaff.setText("Récupérer la liste");
-        btaff.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btaffActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btaff)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblnumpat)
+                        .addGap(92, 92, 92)
+                        .addComponent(txtnumpat, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 348, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btaff)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblnumpat)
+                    .addComponent(txtnumpat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btaffActionPerformed
-
+    private void txtnumpatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumpatActionPerformed
         try {
-            List<VUE_PRESCR_MEDOC> alc = vueDAO.aff();
+            int numpat = Integer.parseInt(txtnumpat.getText());
+            pat = patientDAO.read(numpat);
+            List<VUE_PRESCR_MEDOC> alc = vueDAO.rechPat(numpat);
             int nr = dft1.getRowCount();
             for (int i = nr - 1; i >= 0; i--) {
                 dft1.removeRow(i);
             }
             for (VUE_PRESCR_MEDOC cl : alc) {
                 Vector v = new Vector();
+                v.add(pat.getNom());
+                v.add(pat.getPrenom());
                 v.add(cl.getIdpres());
                 v.add(cl.getDateprescription());
                 v.add(cl.getIdmedecin());
-                v.add(cl.getIdpat());
                 v.add(cl.getIdmedoc());
                 v.add(cl.getNom());
-                v.add(cl.getCodemedoc());
                 dft1.addRow(v);
 
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btaffActionPerformed
+    }//GEN-LAST:event_txtnumpatActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btaff;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblnumpat;
+    private javax.swing.JTextField txtnumpat;
     // End of variables declaration//GEN-END:variables
 }
