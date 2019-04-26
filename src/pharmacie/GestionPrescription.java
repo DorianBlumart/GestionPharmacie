@@ -7,6 +7,7 @@
  * @see PrescriptionDAO
  */
 package pharmacie;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -82,6 +83,7 @@ public class GestionPrescription {
         int choix;
         String x;
         do {
+            cherchPat();
             System.out.println("----------------------------------------");
             System.out.println("1. Ajouter une prescription\n2. Rechercher une prescription\n3. Modifier date de prescription\n4. Supprimer une prescription\n5. Afficher toutes les prescriptions\n6. RETOUR\n7. FIN");
             System.out.println("----------------------------------------");
@@ -180,6 +182,20 @@ public class GestionPrescription {
         } catch (SQLException e) {
             System.out.println("\nErreur: " + e.getMessage());
             return false;
+        }
+    }
+
+    public void cherchPat() throws SQLException {
+            System.out.println("Id du pat ?");
+            int id = sc.nextInt();
+        try {
+            List<VUE_PRESCR_MEDOC> listePres = ((VUE_PRESCR_MEDOCDAO) vueDAO).rechPat(id);
+            System.out.println("\nVoici la liste:");
+            for (VUE_PRESCR_MEDOC l : listePres) {//meilleure manière pour afficher liste c'est léquivalent du foreach
+                System.out.println(l + "\n");
+            }
+        } catch (SQLException e) {
+            System.out.println("\nErreur: " + e.getMessage());
         }
     }
 

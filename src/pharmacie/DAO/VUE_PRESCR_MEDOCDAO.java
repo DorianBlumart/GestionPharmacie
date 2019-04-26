@@ -67,12 +67,12 @@ public class VUE_PRESCR_MEDOCDAO extends DAO<VUE_PRESCR_MEDOC> {
      * @throws SQLException pas de médicament enregistré
      */
     public List<VUE_PRESCR_MEDOC> aff() throws SQLException {
-        List<VUE_PRESCR_MEDOC> plusieurs = new ArrayList<>(); //plusieurs clients peucvent avoir même nom donc liste de client
+        List<VUE_PRESCR_MEDOC> plusieurs = new ArrayList<>(); 
         String req = "select * from api_VUE_PRESCR_MEDOC";
         try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
             try (ResultSet rs = pstm.executeQuery()) {
                 boolean trouve = false;
-                while (rs.next()) { //while car plusieurs clients possibles
+                while (rs.next()) { 
                     trouve = true;
                     int idpres = rs.getInt("idpres");
                     LocalDate date = rs.getDate("dateprescription").toLocalDate();
@@ -82,16 +82,44 @@ public class VUE_PRESCR_MEDOCDAO extends DAO<VUE_PRESCR_MEDOC> {
                     String nom = rs.getString("nom");
                     String desc = rs.getString("description");
                     String code = rs.getString("codemedoc");
-                    plusieurs.add(new VUE_PRESCR_MEDOC(idpres,date, idmedecin, idpat, idmedoc,nom,desc,code));
+                    plusieurs.add(new VUE_PRESCR_MEDOC(idpres, date, idmedecin, idpat, idmedoc, nom, desc, code));
                 }
 
                 if (!trouve) {
                     throw new SQLException("pas de médicament enregistré");
                 } else {
-                    return plusieurs; 
+                    return plusieurs;
                 }
             }
         }
 
+    }
+
+    public List<VUE_PRESCR_MEDOC> rechPat(int idpat) throws SQLException {
+        List<VUE_PRESCR_MEDOC> plusieurs = new ArrayList<>(); 
+        String req = "select * from api_VUE_PRESCR_MEDOC where idpat=?";
+        try (PreparedStatement pstm = dbConnect.prepareStatement(req)) {
+            pstm.setInt(1, idpat);
+            try (ResultSet rs = pstm.executeQuery()) {
+                boolean trouve = false;
+                while (rs.next()) { 
+                    trouve = true;
+                    int idpres = rs.getInt("idpres");
+                    LocalDate date = rs.getDate("dateprescription").toLocalDate();
+                    int idmedecin = rs.getInt("idmedecin");
+                    int idmedoc = rs.getInt("idmedoc");
+                    String nom = rs.getString("nom");
+                    String desc = rs.getString("description");
+                    String code = rs.getString("codemedoc");
+                    plusieurs.add(new VUE_PRESCR_MEDOC(idpres, date, idmedecin, idpat, idmedoc, nom, desc, code));
+                }
+
+                if (!trouve) {
+                    throw new SQLException("ce patient n'a pas de prescription");
+                } else {
+                    return plusieurs;
+                }
+            }
+        }
     }
 }
