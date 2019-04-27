@@ -1,11 +1,9 @@
-
 package pharmacie.graph;
 
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import pharmacie.DAO.PatientDAO;
 import pharmacie.metier.Patient;
-
 
 public class CreaPatient extends javax.swing.JPanel {
 
@@ -138,11 +136,19 @@ public class CreaPatient extends javax.swing.JPanel {
                 if (f.getMessage().contains("UK")) {
                     JOptionPane.showMessageDialog(this, "patient déjà existant", "ERREUR", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, f.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+                    if (f.getMessage().contains("NULL")) {
+                        JOptionPane.showMessageDialog(this, "veuillez remplir tous les champs", "ERREUR", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, f.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            if (e.getMessage().contains("input")) {
+                JOptionPane.showMessageDialog(this, "veuillez remplir tous les champs", "ERREUR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            }
         }
         txtnumpat.setText("");
         txtnom.setText("");
