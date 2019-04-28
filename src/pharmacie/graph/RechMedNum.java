@@ -63,7 +63,7 @@ public class RechMedNum extends javax.swing.JPanel {
         txttel.setMinimumSize(new java.awt.Dimension(50, 20));
         txttel.setPreferredSize(new java.awt.Dimension(150, 30));
 
-        btmaj.setText("Màj téléphone du dernier patient trouvé");
+        btmaj.setText("Màj téléphone du dernier médecin trouvé");
         btmaj.setPreferredSize(new java.awt.Dimension(150, 30));
         btmaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +79,8 @@ public class RechMedNum extends javax.swing.JPanel {
             }
         });
 
-        btdel.setText("Effacer le dernier patient trouvé");
+        btdel.setText("Effacer le dernier médecin trouvé");
+        btdel.setActionCommand("Effacer le dernier médecin trouvé");
         btdel.setPreferredSize(new java.awt.Dimension(150, 30));
         btdel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,6 +200,7 @@ public class RechMedNum extends javax.swing.JPanel {
             txtnom.setText("");
             txtprenom.setText("");
             txttel.setText("");
+            txtmatricule.setText("");
             JOptionPane.showMessageDialog(this, "médecin effacé", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             if (e.getMessage().contains("input")) {
