@@ -1,20 +1,20 @@
 package pharmacie.graph;
 
 import javax.swing.JOptionPane;
-import pharmacie.DAO.PatientDAO;
-import pharmacie.metier.Patient;
+import pharmacie.DAO.MedecinDAO;
+import pharmacie.metier.Medecin;
 
-public class RechPatNum extends javax.swing.JPanel {
+public class RechMedNum extends javax.swing.JPanel {
 
-    PatientDAO patientDAO = null;
-    Patient pat = null;
+    MedecinDAO medecinDAO = null;
+    Medecin med = null;
 
-    public RechPatNum() {
+    public RechMedNum() {
         initComponents();
     }
 
-    public void setPatientDAO(PatientDAO patientDAO) {
-        this.patientDAO = patientDAO;
+    public void setMedecinDAO(MedecinDAO medecinDAO) {
+        this.medecinDAO = medecinDAO;
     }
 
     @SuppressWarnings("unchecked")
@@ -22,31 +22,33 @@ public class RechPatNum extends javax.swing.JPanel {
     private void initComponents() {
 
         lblnom = new javax.swing.JLabel();
-        llblnumpat = new javax.swing.JLabel();
+        llblnummed = new javax.swing.JLabel();
         lblprenom = new javax.swing.JLabel();
         lbltel = new javax.swing.JLabel();
-        txtnumpat = new javax.swing.JTextField();
+        txtnummed = new javax.swing.JTextField();
         txtprenom = new javax.swing.JTextField();
         txtnom = new javax.swing.JTextField();
         txttel = new javax.swing.JTextField();
         btmaj = new javax.swing.JButton();
         btrech = new javax.swing.JButton();
         btdel = new javax.swing.JButton();
+        txtmatricule = new javax.swing.JTextField();
+        lblmatricule = new javax.swing.JLabel();
 
         lblnom.setText("nom");
 
-        llblnumpat.setText("numéro de patient");
+        llblnummed.setText("numéro de médecin");
 
         lblprenom.setText("prénom");
 
         lbltel.setText("numéro de téléphone");
 
-        txtnumpat.setMinimumSize(new java.awt.Dimension(50, 20));
-        txtnumpat.setNextFocusableComponent(txtnom);
-        txtnumpat.setPreferredSize(new java.awt.Dimension(150, 30));
-        txtnumpat.addActionListener(new java.awt.event.ActionListener() {
+        txtnummed.setMinimumSize(new java.awt.Dimension(50, 20));
+        txtnummed.setNextFocusableComponent(txtnom);
+        txtnummed.setPreferredSize(new java.awt.Dimension(150, 30));
+        txtnummed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnumpatActionPerformed(evt);
+                txtnummedActionPerformed(evt);
             }
         });
 
@@ -85,6 +87,8 @@ public class RechPatNum extends javax.swing.JPanel {
             }
         });
 
+        lblmatricule.setText("matricule");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,15 +99,17 @@ public class RechPatNum extends javax.swing.JPanel {
                     .addComponent(lblprenom)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(llblnumpat)
+                            .addComponent(llblnummed)
                             .addComponent(lblnom)
-                            .addComponent(lbltel))
+                            .addComponent(lbltel)
+                            .addComponent(lblmatricule))
                         .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txttel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtprenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtnumpat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txttel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtprenom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtnummed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtnom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtmatricule)))
                     .addComponent(btrech, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(185, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -118,8 +124,8 @@ public class RechPatNum extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(llblnumpat)
-                    .addComponent(txtnumpat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(llblnummed)
+                    .addComponent(txtnummed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblnom)
@@ -132,9 +138,13 @@ public class RechPatNum extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbltel)
                     .addComponent(txttel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtmatricule, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(lblmatricule))
+                .addGap(29, 29, 29)
                 .addComponent(btrech, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btdel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btmaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -144,17 +154,18 @@ public class RechPatNum extends javax.swing.JPanel {
 
     private void btmajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmajActionPerformed
         try {
-            int numpat = Integer.parseInt(txtnumpat.getText());
+            int nummed = Integer.parseInt(txtnummed.getText());
             String nom = txtnom.getText();
             String prenom = txtprenom.getText();
             String tel = txttel.getText();
-            Patient pat = new Patient(numpat, nom, prenom, tel);
-            patientDAO.update(pat);
-            JOptionPane.showMessageDialog(this, "patient mis à jour", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+            String matricule = txtmatricule.getText();
+            Medecin med = new Medecin(nummed, matricule, nom, prenom, tel);
+            medecinDAO.update(med);
+            JOptionPane.showMessageDialog(this, "médecin mis à jour", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
             if (e.getMessage().contains("input")) {
-                JOptionPane.showMessageDialog(this, "veuillez identifier le patient cherché", "ERREUR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "veuillez identifier le médecin cherché", "ERREUR", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
             }
@@ -164,15 +175,16 @@ public class RechPatNum extends javax.swing.JPanel {
 
     private void btrechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btrechActionPerformed
         try {
-            int numpat = Integer.parseInt(txtnumpat.getText());
-            pat = patientDAO.read(numpat);
-            txtnom.setText(pat.getNom());
-            txtprenom.setText(pat.getPrenom());
-            txttel.setText(pat.getTel());
-            JOptionPane.showMessageDialog(this, "patient trouvé", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+            int nummed = Integer.parseInt(txtnummed.getText());
+            med = medecinDAO.read(nummed);
+            txtnom.setText(med.getNom());
+            txtprenom.setText(med.getPrenom());
+            txttel.setText(med.getTel());
+            txtmatricule.setText(med.getMatricule());
+            JOptionPane.showMessageDialog(this, "médecin trouvé", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             if (e.getMessage().contains("input")) {
-                JOptionPane.showMessageDialog(this, "veuillez identifier le patient cherché", "ERREUR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "veuillez identifier le médecin cherché", "ERREUR", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
             }
@@ -181,19 +193,19 @@ public class RechPatNum extends javax.swing.JPanel {
 
     private void btdelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btdelActionPerformed
         try {
-            int numpat = Integer.parseInt(txtnumpat.getText());
-            patientDAO.delete(pat);
-            txtnumpat.setText("");
+            int nummed = Integer.parseInt(txtnummed.getText());
+            medecinDAO.delete(med);
+            txtnummed.setText("");
             txtnom.setText("");
             txtprenom.setText("");
             txttel.setText("");
-            JOptionPane.showMessageDialog(this, "patient effacé", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "médecin effacé", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             if (e.getMessage().contains("input")) {
-                JOptionPane.showMessageDialog(this, "veuillez identifier le patient cherché", "ERREUR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "veuillez identifier le médecin cherché", "ERREUR", JOptionPane.ERROR_MESSAGE);
             } else {
                 if (e.getMessage().contains("int")) {   //erreur d'intégrité
-                    JOptionPane.showMessageDialog(this, "Vous ne pouvez pas supprimer un patient déjà renseigné dans une prescription, veuillez d'abord supprimer sa/ses prescription(s)", "ERREUR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Vous ne pouvez pas supprimer un médecin déjà renseigné dans une prescription, veuillez d'abord supprimer sa/ses prescription(s)", "ERREUR", JOptionPane.ERROR_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
                 }
@@ -201,21 +213,23 @@ public class RechPatNum extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btdelActionPerformed
 
-    private void txtnumpatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumpatActionPerformed
+    private void txtnummedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnummedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnumpatActionPerformed
+    }//GEN-LAST:event_txtnummedActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btdel;
     private javax.swing.JButton btmaj;
     private javax.swing.JButton btrech;
+    private javax.swing.JLabel lblmatricule;
     private javax.swing.JLabel lblnom;
     private javax.swing.JLabel lblprenom;
     private javax.swing.JLabel lbltel;
-    private javax.swing.JLabel llblnumpat;
+    private javax.swing.JLabel llblnummed;
+    private javax.swing.JTextField txtmatricule;
     private javax.swing.JTextField txtnom;
-    private javax.swing.JTextField txtnumpat;
+    private javax.swing.JTextField txtnummed;
     private javax.swing.JTextField txtprenom;
     private javax.swing.JTextField txttel;
     // End of variables declaration//GEN-END:variables

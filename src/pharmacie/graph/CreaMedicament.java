@@ -28,8 +28,9 @@ public class CreaMedicament extends javax.swing.JPanel {
         txtnummedoc = new javax.swing.JTextField();
         txtnom = new javax.swing.JTextField();
         txtcode = new javax.swing.JTextField();
-        txtdesc = new javax.swing.JTextField();
         btcreate = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtdesc = new javax.swing.JTextArea();
 
         lblcode.setText("code");
 
@@ -57,15 +58,16 @@ public class CreaMedicament extends javax.swing.JPanel {
         txtcode.setNextFocusableComponent(txtnom);
         txtcode.setPreferredSize(new java.awt.Dimension(150, 30));
 
-        txtdesc.setMinimumSize(new java.awt.Dimension(50, 20));
-        txtdesc.setPreferredSize(new java.awt.Dimension(150, 30));
-
         btcreate.setText("création");
         btcreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btcreateActionPerformed(evt);
             }
         });
+
+        txtdesc.setColumns(20);
+        txtdesc.setRows(5);
+        jScrollPane1.setViewportView(txtdesc);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -81,13 +83,17 @@ public class CreaMedicament extends javax.swing.JPanel {
                             .addComponent(llblnummedoc)
                             .addComponent(lblcode)
                             .addComponent(lbldesc))
-                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtdesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtnummedoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(90, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtnom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtnummedoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtcode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,11 +110,14 @@ public class CreaMedicament extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblnom)
                     .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbldesc)
-                    .addComponent(txtdesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lbldesc))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(btcreate)
                 .addGap(76, 76, 76))
         );
@@ -157,12 +166,13 @@ public class CreaMedicament extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btcreate;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblcode;
     private javax.swing.JLabel lbldesc;
     private javax.swing.JLabel lblnom;
     private javax.swing.JLabel llblnummedoc;
     private javax.swing.JTextField txtcode;
-    private javax.swing.JTextField txtdesc;
+    private javax.swing.JTextArea txtdesc;
     private javax.swing.JTextField txtnom;
     private javax.swing.JTextField txtnummedoc;
     // End of variables declaration//GEN-END:variables

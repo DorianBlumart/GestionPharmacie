@@ -95,6 +95,38 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuCreaMedocActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuRechNumMedoc">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Recherche exacte (via id)"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuRechNumMedocActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuRechDescMedoc">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Recherche large (via description)"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuRechDescMedocActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuAffQuantMedoc">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Afficher les quantit&#xe9;s &#xe9;coul&#xe9;es (via id)"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuAffQuantMedocActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuAffMedoc">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Afficher totalit&#xe9;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuAffMedocActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>
@@ -183,6 +215,34 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
           <CardConstraints cardName="cardCreaMedoc"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="pharmacie.graph.RechMedocNum" name="rechMedocNum">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardRechNumMedoc"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="pharmacie.graph.RechMedocDesc" name="rechMedocDesc">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardRechDescMedoc"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="pharmacie.graph.AffMedoc" name="affMedoc">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardAffMedoc"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="pharmacie.graph.AffQuantMedoc" name="affQuantMedoc">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+          <CardConstraints cardName="cardAffQuantMedoc"/>
         </Constraint>
       </Constraints>
     </Component>

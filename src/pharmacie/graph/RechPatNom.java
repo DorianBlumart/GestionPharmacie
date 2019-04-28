@@ -111,6 +111,7 @@ public class RechPatNom extends javax.swing.JPanel {
         }
        }
        catch(Exception e){
+           
            JOptionPane.showMessageDialog(this,e.getMessage(),"ERREUR",JOptionPane.ERROR_MESSAGE);
        }
     }//GEN-LAST:event_txtnomActionPerformed

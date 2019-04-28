@@ -150,23 +150,27 @@ public class RechPresNum extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btmajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmajActionPerformed
-        try {            
+        try {
             int numpres = Integer.parseInt(txtnumpres.getText());
             String date = txtdate.getText();
             int nummed = Integer.parseInt(txtnummed.getText());
-            int numpat = Integer.parseInt(txtnumpat.getText());           
+            int numpat = Integer.parseInt(txtnumpat.getText());
             LocalDate datepres = LocalDate.parse(date);
-            
+
             Prescription prescription = new Prescription(numpres, datepres, nummed, numpat);
             prescriptionDAO.update(prescription);
             JOptionPane.showMessageDialog(this, "patient mis à jour", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
-            if (e.getMessage().contains("parsed")){
-                JOptionPane.showMessageDialog(this,"Date entrée invalide", "ERREUR", JOptionPane.ERROR_MESSAGE);        //erreur date
+            if (e.getMessage().contains("input")) {
+                JOptionPane.showMessageDialog(this, "veuillez identifier la prescription cherchée", "ERREUR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                if (e.getMessage().contains("parsed")) {
+                    JOptionPane.showMessageDialog(this, "Date entrée invalide", "ERREUR", JOptionPane.ERROR_MESSAGE);        //erreur date
+                } else {
+                    JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+                }
             }
-            else
-                JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btmajActionPerformed
@@ -180,27 +184,34 @@ public class RechPresNum extends javax.swing.JPanel {
             txtnumpat.setText("" + prescription.getIdpat());
             JOptionPane.showMessageDialog(this, "presciption trouvée", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            if (e.getMessage().contains("input")) {
+                JOptionPane.showMessageDialog(this, "veuillez identifier la prescription cherchée", "ERREUR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btrechActionPerformed
 
     private void btdelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btdelActionPerformed
         try {
             int numpres = Integer.parseInt(txtnumpres.getText());
-            try{
+            try {
                 ((InfosDAO) (infosDAO)).deleteForPrescr(prescription);      //on va faire ici une supression en cascade pour l'info associée car le user n'a aucun moyen de supprimer une info                
                 prescriptionDAO.delete(prescription);
-            }
-            catch(Exception f){
+            } catch (Exception f) {
                 prescriptionDAO.delete(prescription);
-            }                   
+            }
             txtnumpres.setText("");
             txtdate.setText("");
             txtnummed.setText("");
             txtnumpat.setText("");
             JOptionPane.showMessageDialog(this, "prescription effacée", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            if (e.getMessage().contains("input")) {
+                JOptionPane.showMessageDialog(this, "veuillez identifier la prescription cherchée", "ERREUR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
     }//GEN-LAST:event_btdelActionPerformed

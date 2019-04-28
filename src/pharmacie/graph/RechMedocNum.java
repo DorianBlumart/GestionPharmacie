@@ -37,10 +37,11 @@ public class RechMedocNum extends javax.swing.JPanel {
         txtnummedoc = new javax.swing.JTextField();
         txtnom = new javax.swing.JTextField();
         txtcode = new javax.swing.JTextField();
-        txtdesc = new javax.swing.JTextField();
         btmaj = new javax.swing.JButton();
         btrech = new javax.swing.JButton();
         btdel = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtdesc = new javax.swing.JTextArea();
 
         lblcode.setText("code");
 
@@ -67,9 +68,6 @@ public class RechMedocNum extends javax.swing.JPanel {
         txtcode.setNextFocusableComponent(txtnom);
         txtcode.setPreferredSize(new java.awt.Dimension(150, 30));
 
-        txtdesc.setMinimumSize(new java.awt.Dimension(50, 20));
-        txtdesc.setPreferredSize(new java.awt.Dimension(150, 30));
-
         btmaj.setText("Màj description du dernier médoc trouvé");
         btmaj.setPreferredSize(new java.awt.Dimension(150, 30));
         btmaj.addActionListener(new java.awt.event.ActionListener() {
@@ -94,33 +92,43 @@ public class RechMedocNum extends javax.swing.JPanel {
             }
         });
 
+        txtdesc.setColumns(20);
+        txtdesc.setRows(5);
+        jScrollPane1.setViewportView(txtdesc);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblnom)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblnummedoc)
-                            .addComponent(lblcode)
-                            .addComponent(lbldesc))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtdesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtnummedoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btrech, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(176, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btmaj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btmaj, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btdel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btrech, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblnom)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblnummedoc)
+                                    .addComponent(lblcode))
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtnom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtnummedoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtcode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbldesc)
+                                .addGap(54, 54, 54)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,12 +146,12 @@ public class RechMedocNum extends javax.swing.JPanel {
                     .addComponent(lblnom)
                     .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbldesc)
-                    .addComponent(txtdesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btrech, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btdel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btmaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -164,7 +172,11 @@ public class RechMedocNum extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "médicament mis à jour", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            if (e.getMessage().contains("input")) {
+                JOptionPane.showMessageDialog(this, "veuillez identifier le médicament cherché", "ERREUR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btmajActionPerformed
 
@@ -175,9 +187,13 @@ public class RechMedocNum extends javax.swing.JPanel {
             txtcode.setText(medicament.getCodemedoc());
             txtnom.setText(medicament.getNom());
             txtdesc.setText(medicament.getDescription());
-            JOptionPane.showMessageDialog(this, "patient trouvé", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "médicament trouvé", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            if (e.getMessage().contains("input")) {
+                JOptionPane.showMessageDialog(this, "veuillez identifier le médicament cherché", "ERREUR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btrechActionPerformed
 
@@ -196,7 +212,11 @@ public class RechMedocNum extends javax.swing.JPanel {
             txtdesc.setText("");
             JOptionPane.showMessageDialog(this, "médicament effacé", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            if (e.getMessage().contains("input")) {
+                JOptionPane.showMessageDialog(this, "veuillez identifier le médicament cherché", "ERREUR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btdelActionPerformed
 
@@ -209,12 +229,13 @@ public class RechMedocNum extends javax.swing.JPanel {
     private javax.swing.JButton btdel;
     private javax.swing.JButton btmaj;
     private javax.swing.JButton btrech;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblcode;
     private javax.swing.JLabel lbldesc;
     private javax.swing.JLabel lblnom;
     private javax.swing.JLabel lblnummedoc;
     private javax.swing.JTextField txtcode;
-    private javax.swing.JTextField txtdesc;
+    private javax.swing.JTextArea txtdesc;
     private javax.swing.JTextField txtnom;
     private javax.swing.JTextField txtnummedoc;
     // End of variables declaration//GEN-END:variables

@@ -5,69 +5,58 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pharmacie.DAO.PatientDAO;
-import pharmacie.DAO.VUE_PRESCR_MEDOCDAO;
-import pharmacie.metier.Patient;
-import pharmacie.metier.VUE_PRESCR_MEDOC;
+import pharmacie.DAO.VUE_QTOT_UNITE_MEDOCDAO;
+import pharmacie.metier.VUE_QTOT_UNITE_MEDOC;
 
-public class RechPresPat extends javax.swing.JPanel {
+public class AffQuantMedoc extends javax.swing.JPanel {
 
-    PatientDAO patientDAO = null;
-    Patient pat = null;
-    VUE_PRESCR_MEDOCDAO vueDAO = null;
+    VUE_QTOT_UNITE_MEDOCDAO vueDAO = null;
     DefaultTableModel dft1 = new DefaultTableModel();
 
-    public RechPresPat() {
+    public AffQuantMedoc() {
         initComponents();
-        dft1.addColumn("nom patient");
-        dft1.addColumn("prénom patient");
-        dft1.addColumn("num prescription");
-        dft1.addColumn("date");
-        dft1.addColumn("num médecin");
-        dft1.addColumn("num médoc");
-        dft1.addColumn("nom médoc");
+        initComponents();
+        dft1.addColumn("numéro");
+        dft1.addColumn("nom");
+        dft1.addColumn("quantité");
+        dft1.addColumn("unité");
         jTable1.setModel(dft1);
 
     }
 
-    public void setPatientDAO(PatientDAO patientDAO) {
-        this.patientDAO = patientDAO;
-    }
-
-    public void setVUE_PRESCR_MEDOCDAO(VUE_PRESCR_MEDOCDAO vueDAO) {
+    public void setVUE_QTOT_UNITE_MEDOCDAO(VUE_QTOT_UNITE_MEDOCDAO vueDAO) {
         this.vueDAO = vueDAO;
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblnumpat = new javax.swing.JLabel();
-        txtnumpat = new javax.swing.JTextField();
+        lblnummedoc = new javax.swing.JLabel();
+        txtnummedoc = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        lblnumpat.setText("Numéro du patient");
+        lblnummedoc.setText("Numéro du médicament");
 
-        txtnumpat.addActionListener(new java.awt.event.ActionListener() {
+        txtnummedoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnumpatActionPerformed(evt);
+                txtnummedocActionPerformed(evt);
             }
         });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -84,11 +73,11 @@ public class RechPresPat extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblnumpat)
-                        .addGap(92, 92, 92)
-                        .addComponent(txtnumpat, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 348, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE))
+                        .addComponent(lblnummedoc)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtnummedoc, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -96,32 +85,28 @@ public class RechPresPat extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblnumpat)
-                    .addComponent(txtnumpat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblnummedoc)
+                    .addComponent(txtnummedoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtnumpatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumpatActionPerformed
+    private void txtnummedocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnummedocActionPerformed
         try {
-            int numpat = Integer.parseInt(txtnumpat.getText());
-            pat = patientDAO.read(numpat);
-            List<VUE_PRESCR_MEDOC> alc = vueDAO.rechPat(numpat);
+            int nummedoc = Integer.parseInt(txtnummedoc.getText());
+            List<VUE_QTOT_UNITE_MEDOC> alc = vueDAO.aff(nummedoc);
             int nr = dft1.getRowCount();
             for (int i = nr - 1; i >= 0; i--) {
                 dft1.removeRow(i);
             }
-            for (VUE_PRESCR_MEDOC cl : alc) {
+            for (VUE_QTOT_UNITE_MEDOC cl : alc) {
                 Vector v = new Vector();
-                v.add(pat.getNom());
-                v.add(pat.getPrenom());
-                v.add(cl.getIdpres());
-                v.add(cl.getDateprescription());
-                v.add(cl.getIdmedecin());
                 v.add(cl.getIdmedoc());
                 v.add(cl.getNom());
+                v.add(cl.getQtot());
+                v.add(cl.getUnite());
                 dft1.addRow(v);
 
             }
@@ -132,13 +117,13 @@ public class RechPresPat extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_txtnumpatActionPerformed
+    }//GEN-LAST:event_txtnummedocActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblnumpat;
-    private javax.swing.JTextField txtnumpat;
+    private javax.swing.JLabel lblnummedoc;
+    private javax.swing.JTextField txtnummedoc;
     // End of variables declaration//GEN-END:variables
 }

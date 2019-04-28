@@ -80,7 +80,7 @@ public class GestionMedicament {
         boolean tmp;
         do {
             System.out.println("----------------------------------------");
-            System.out.println("1. Ajout\n2. Recherche\n3. Modifier description\n4. Supprimer\n5. Chercher description\n6. Afficher tous les médicaments\n7. Afficher les quantités totales prescrites d'un médicament (Par unité)\n8. RETOUR\n9. FIN");
+            System.out.println("1. Ajout\n2. Recherche\n3. Modifier description\n4. Supprimer\n5. Chercher description\n6. Afficher tous les médicaments\n7. Afficher les quantités écoulées d'un médicament (Par unité)\n8. RETOUR\n9. FIN");
             System.out.println("----------------------------------------");
             x = saisir("", "[1-9]");   //contrôle saisie
             choix = Integer.parseInt(x);
