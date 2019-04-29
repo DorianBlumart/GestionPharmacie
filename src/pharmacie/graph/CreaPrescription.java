@@ -7,7 +7,6 @@ import pharmacie.DAO.InfosDAO;
 import pharmacie.DAO.PatientDAO;
 import pharmacie.DAO.PrescriptionDAO;
 import pharmacie.metier.Infos;
-import pharmacie.metier.Patient;
 import pharmacie.metier.Prescription;
 
 public class CreaPrescription extends javax.swing.JPanel {

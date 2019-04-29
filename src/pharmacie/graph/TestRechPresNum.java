@@ -9,7 +9,6 @@ import java.sql.Connection;
 import javax.swing.JOptionPane;
 import myconnections.DBConnection;
 import pharmacie.DAO.InfosDAO;
-import pharmacie.DAO.PatientDAO;
 import pharmacie.DAO.PrescriptionDAO;
 
 /**

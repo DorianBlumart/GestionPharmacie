@@ -8,7 +8,6 @@ package pharmacie.graph;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import myconnections.DBConnection;
-import pharmacie.DAO.PatientDAO;
 import pharmacie.DAO.VUE_PRESCR_MEDOCDAO;
 
 /**

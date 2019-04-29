@@ -2,19 +2,19 @@ package pharmacie.graph;
 
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import pharmacie.DAO.PatientDAO;
-import pharmacie.metier.Patient;
+import pharmacie.DAO.MedecinDAO;
+import pharmacie.metier.Medecin;
 
-public class CreaPatient extends javax.swing.JPanel {
+public class CreaMedecin extends javax.swing.JPanel {
 
-    PatientDAO patientDAO = null;
+    MedecinDAO medecinDAO = null;
 
-    public CreaPatient() {
+    public CreaMedecin() {
         initComponents();
     }
 
-    public void setPatientDAO(PatientDAO patientDAO) {
-        this.patientDAO = patientDAO;
+    public void setMedecinDAO(MedecinDAO medecinDAO) {
+        this.medecinDAO = medecinDAO;
     }
 
     @SuppressWarnings("unchecked")
@@ -22,7 +22,7 @@ public class CreaPatient extends javax.swing.JPanel {
     private void initComponents() {
 
         lblcode = new javax.swing.JLabel();
-        llblnumpat = new javax.swing.JLabel();
+        llblnummed = new javax.swing.JLabel();
         lblprenom = new javax.swing.JLabel();
         lbltel = new javax.swing.JLabel();
         txtnumpat = new javax.swing.JTextField();
@@ -30,10 +30,12 @@ public class CreaPatient extends javax.swing.JPanel {
         txtnom = new javax.swing.JTextField();
         txttel = new javax.swing.JTextField();
         btcreate = new javax.swing.JButton();
+        txtmatricule = new javax.swing.JTextField();
+        lblmatricule = new javax.swing.JLabel();
 
         lblcode.setText("nom");
 
-        llblnumpat.setText("numéro de patient");
+        llblnummed.setText("numéro de médecin");
 
         lblprenom.setText("prénom");
 
@@ -67,6 +69,8 @@ public class CreaPatient extends javax.swing.JPanel {
             }
         });
 
+        lblmatricule.setText("matricule");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,15 +82,17 @@ public class CreaPatient extends javax.swing.JPanel {
                     .addComponent(lblprenom)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(llblnumpat)
+                            .addComponent(llblnummed)
                             .addComponent(lblcode)
-                            .addComponent(lbltel))
+                            .addComponent(lbltel)
+                            .addComponent(lblmatricule))
                         .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txttel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtprenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtnumpat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txttel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtprenom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtnumpat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtnom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtmatricule))))
                 .addContainerGap(99, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,7 +100,7 @@ public class CreaPatient extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(llblnumpat)
+                    .addComponent(llblnummed)
                     .addComponent(txtnumpat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -108,9 +114,13 @@ public class CreaPatient extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbltel)
                     .addComponent(txttel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(72, 72, 72)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtmatricule, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblmatricule))
+                .addGap(44, 44, 44)
                 .addComponent(btcreate)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -123,19 +133,24 @@ public class CreaPatient extends javax.swing.JPanel {
             String nom = txtnom.getText();
             String prenom = txtprenom.getText();
             String tel = txttel.getText();
-            Patient patient = new Patient(0, nom, prenom, tel);
+            String matricule = txtmatricule.getText();
+            Medecin medecin = new Medecin(0, matricule,nom, prenom, tel);
             try {
-                patient = patientDAO.create(patient);
-                txtnumpat.setText("" + patient.getIdpat());
-                JOptionPane.showMessageDialog(this, "patient créé", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                medecin = medecinDAO.create(medecin);
+                txtnumpat.setText("" + medecin.getIdmed());
+                JOptionPane.showMessageDialog(this, "medecin créé", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
             } catch (SQLException f) {
                 if (f.getMessage().contains("UK")) {
-                    JOptionPane.showMessageDialog(this, "patient déjà existant", "ERREUR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "medecin déjà existant", "ERREUR", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    if (f.getMessage().contains("NULL")) {
-                        JOptionPane.showMessageDialog(this, "veuillez remplir tous les champs", "ERREUR", JOptionPane.ERROR_MESSAGE);
+                    if (f.getMessage().contains("grand")) { //si on dépasse la taille du varchar 
+                        JOptionPane.showMessageDialog(this, "le matricule dépasse la taille limite de 5 caractères", "ERREUR", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(this, f.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+                        if (f.getMessage().contains("NULL")) {
+                            JOptionPane.showMessageDialog(this, "veuillez remplir tous les champs", "ERREUR", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(this, f.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
                 }
             }
@@ -150,6 +165,7 @@ public class CreaPatient extends javax.swing.JPanel {
         txtnom.setText("");
         txtprenom.setText("");
         txttel.setText("");
+        txtmatricule.setText("");
 
     }//GEN-LAST:event_btcreateActionPerformed
 
@@ -157,9 +173,11 @@ public class CreaPatient extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btcreate;
     private javax.swing.JLabel lblcode;
+    private javax.swing.JLabel lblmatricule;
     private javax.swing.JLabel lblprenom;
     private javax.swing.JLabel lbltel;
-    private javax.swing.JLabel llblnumpat;
+    private javax.swing.JLabel llblnummed;
+    private javax.swing.JTextField txtmatricule;
     private javax.swing.JTextField txtnom;
     private javax.swing.JTextField txtnumpat;
     private javax.swing.JTextField txtprenom;

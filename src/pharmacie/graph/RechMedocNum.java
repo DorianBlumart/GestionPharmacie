@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import pharmacie.DAO.InfosDAO;
 import pharmacie.DAO.MedicamentDAO;
-import pharmacie.metier.Infos;
 import pharmacie.metier.Medicament;
 
 public class RechMedocNum extends javax.swing.JPanel {

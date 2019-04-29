@@ -1,13 +1,11 @@
 package pharmacie.graph;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pharmacie.DAO.MedicamentDAO;
 import pharmacie.metier.Medicament;
-import pharmacie.metier.Patient;
 
 public class RechMedocDesc extends javax.swing.JPanel {
 

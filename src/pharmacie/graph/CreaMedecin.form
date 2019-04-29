@@ -23,16 +23,18 @@
                   <Component id="lblprenom" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="llblnumpat" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="llblnummed" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblcode" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbltel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblmatricule" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txttel" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtprenom" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtnumpat" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtnom" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txttel" max="32767" attributes="0"/>
+                          <Component id="txtprenom" max="32767" attributes="0"/>
+                          <Component id="txtnumpat" max="32767" attributes="0"/>
+                          <Component id="txtnom" max="32767" attributes="0"/>
+                          <Component id="txtmatricule" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -45,7 +47,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="llblnumpat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="llblnummed" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtnumpat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -63,9 +65,14 @@
                   <Component id="lbltel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txttel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtmatricule" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="lblmatricule" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Component id="btcreate" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="104" max="32767" attributes="0"/>
+              <EmptySpace pref="91" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,9 +83,9 @@
         <Property name="text" type="java.lang.String" value="nom"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="llblnumpat">
+    <Component class="javax.swing.JLabel" name="llblnummed">
       <Properties>
-        <Property name="text" type="java.lang.String" value="num&#xe9;ro de patient"/>
+        <Property name="text" type="java.lang.String" value="num&#xe9;ro de m&#xe9;decin"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblprenom">
@@ -151,6 +158,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btcreateActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtmatricule">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblmatricule">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="matricule"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

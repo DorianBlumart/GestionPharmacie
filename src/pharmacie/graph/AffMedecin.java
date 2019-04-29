@@ -1,29 +1,31 @@
+
 package pharmacie.graph;
 
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pharmacie.DAO.MedicamentDAO;
-import pharmacie.metier.Medicament;
+import pharmacie.DAO.MedecinDAO;
+import pharmacie.metier.Medecin;
 
-public class AffMedoc extends javax.swing.JPanel {
+public class AffMedecin extends javax.swing.JPanel {
 
-    MedicamentDAO medicamentDAO = null;
+    MedecinDAO medecinDAO = null;
     DefaultTableModel dft1 = new DefaultTableModel();
 
-    public AffMedoc() {
+    public AffMedecin() {
         initComponents();
         dft1.addColumn("numéro");
         dft1.addColumn("nom");
-        dft1.addColumn("code");
-        dft1.addColumn("description");
+        dft1.addColumn("prénom");
+        dft1.addColumn("téléphone");
+        dft1.addColumn("matricule");
         jTable1.setModel(dft1);
 
     }
 
-    public void setMedicamentDAO(MedicamentDAO medicamentDAO) {
-        this.medicamentDAO = medicamentDAO;
+    public void setMedecinDAO(MedecinDAO medecinDAO) {
+        this.medecinDAO = medecinDAO;
     }
 
     @SuppressWarnings("unchecked")
@@ -36,17 +38,17 @@ public class AffMedoc extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -54,16 +56,6 @@ public class AffMedoc extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(200);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(200);
-        }
 
         btaff.setText("Récupérer la liste");
         btaff.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +72,7 @@ public class AffMedoc extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 581, Short.MAX_VALUE)
+                        .addGap(0, 407, Short.MAX_VALUE)
                         .addComponent(btaff))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -99,17 +91,18 @@ public class AffMedoc extends javax.swing.JPanel {
     private void btaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btaffActionPerformed
 
         try {
-            List<Medicament> alc = medicamentDAO.aff();
+            List<Medecin> alc = medecinDAO.aff();
             int nr = dft1.getRowCount();
             for (int i = nr - 1; i >= 0; i--) {
                 dft1.removeRow(i);
             }
-            for (Medicament cl : alc) {
+            for (Medecin cl : alc) {
                 Vector v = new Vector();
-                v.add(cl.getIdmedoc());
+                v.add(cl.getIdmed());
                 v.add(cl.getNom());
-                v.add(cl.getCodemedoc());
-                v.add(cl.getDescription());
+                v.add(cl.getPrenom());
+                v.add(cl.getTel());
+                v.add(cl.getMatricule());
                 dft1.addRow(v);
 
             }

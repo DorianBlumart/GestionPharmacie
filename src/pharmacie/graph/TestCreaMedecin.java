@@ -8,32 +8,27 @@ package pharmacie.graph;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import myconnections.DBConnection;
-import pharmacie.DAO.InfosDAO;
-import pharmacie.DAO.PrescriptionDAO;
+import pharmacie.DAO.MedecinDAO;
 
 /**
  *
  * @author Dorian
  */
-public class TestCreaPrescription extends javax.swing.JFrame {
+public class TestCreaMedecin extends javax.swing.JFrame {
 
     /**
-     * Creates new form TestCreaPrescription
+     * Creates new form TestCreaMedecin
      */
-    public TestCreaPrescription() {
+    public TestCreaMedecin() {
         initComponents();
         Connection dbConnect = DBConnection.getConnection();
         if (dbConnect == null) {
             System.out.println("connection invalide");
             JOptionPane.showMessageDialog(this, "connexion invalide", "ERREUR", JOptionPane.ERROR_MESSAGE);
         }
-        PrescriptionDAO prescriptionDAO = new PrescriptionDAO();
-        prescriptionDAO.setConnection(dbConnect);
-        creaPrescription.setPrescriptionDAO(prescriptionDAO);
-        
-        InfosDAO infosDAO = new InfosDAO();
-        infosDAO.setConnection(dbConnect);
-        creaPrescription.setInfosDAO(infosDAO);
+        MedecinDAO medecinDAO = new MedecinDAO();
+        medecinDAO.setConnection(dbConnect);
+        creaMedecin.setMedecinDAO(medecinDAO);
     }
 
     /**
@@ -45,7 +40,7 @@ public class TestCreaPrescription extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        creaPrescription = new pharmacie.graph.CreaPrescription();
+        creaMedecin = new pharmacie.graph.CreaMedecin();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,15 +50,15 @@ public class TestCreaPrescription extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(creaPrescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(creaMedecin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(creaPrescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(creaMedecin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -86,25 +81,25 @@ public class TestCreaPrescription extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TestCreaPrescription.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestCreaMedecin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TestCreaPrescription.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestCreaMedecin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TestCreaPrescription.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestCreaMedecin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TestCreaPrescription.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestCreaMedecin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TestCreaPrescription().setVisible(true);
+                new TestCreaMedecin().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pharmacie.graph.CreaPrescription creaPrescription;
+    private pharmacie.graph.CreaMedecin creaMedecin;
     // End of variables declaration//GEN-END:variables
 }
