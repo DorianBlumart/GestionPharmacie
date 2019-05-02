@@ -10,7 +10,8 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Medecin {
-     /**
+
+    /**
      * identifiant du médecin
      */
     private int idmed;
@@ -30,8 +31,16 @@ public class Medecin {
      * numéro de téléphone du médecin
      */
     private String tel;
-    
+
     private Set<Prescription> prescription = new HashSet<>();
+
+    public Medecin(int idmed, String matricule, String nom, String prenom, String tel) {
+        this.idmed = idmed;
+        this.matricule = matricule;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.tel = tel;
+    }
 
     public int getIdmed() {
         return idmed;
@@ -77,10 +86,6 @@ public class Medecin {
         return prescription;
     }
 
-    public void setPrescription(Set<Prescription> prescription) {
-        this.prescription = prescription;
-    }
-
     @Override
     public int hashCode() {
         int hash = 5;
@@ -105,6 +110,11 @@ public class Medecin {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Medecin{" + "idmed=" + idmed + ", matricule=" + matricule + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel + ", prescription=" + prescription + '}';
+    }
     
-    
+
 }

@@ -1,13 +1,11 @@
-
 package designPatterns.metier;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import pharmacie.metier.Infos;
 
 public class Medicament {
-    
+
     /**
      * identifiant unique du médicament
      */
@@ -24,7 +22,14 @@ public class Medicament {
      * Code du médicament
      */
     private String codemedoc;
-    private Set<Infos> info=new HashSet<>();
+    private Set<Infos> info = new HashSet<>();
+
+    public Medicament(int idmedoc, String nom, String description, String codemedoc) {
+        this.idmedoc = idmedoc;
+        this.nom = nom;
+        this.description = description;
+        this.codemedoc = codemedoc;
+    }
 
     public int getIdmedoc() {
         return idmedoc;
@@ -62,6 +67,7 @@ public class Medicament {
         return info;
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -86,5 +92,11 @@ public class Medicament {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Medicament{" + "idmedoc=" + idmedoc + ", nom=" + nom + ", description=" + description + ", codemedoc=" + codemedoc + ", info=" + info + '}';
+    }
     
+
 }

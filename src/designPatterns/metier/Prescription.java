@@ -1,15 +1,14 @@
-
 package designPatterns.metier;
 
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import pharmacie.metier.Medecin;
-import pharmacie.metier.Patient;
+
 
 public class Prescription {
-        /**
+
+    /**
      * identifiant unique de la prescription
      */
     private int idpres;
@@ -20,6 +19,13 @@ public class Prescription {
     private Set<Infos> info = new HashSet<>();
     private Patient patient;
     private Medecin medecin;
+
+    public Prescription(int idpres, LocalDate dateprescription, Medecin medecin, Patient patient) {
+        this.idpres = idpres;
+        this.dateprescription = dateprescription;
+        this.medecin = medecin;
+        this.patient = patient;
+    }
 
     public int getIdpres() {
         return idpres;
@@ -41,10 +47,6 @@ public class Prescription {
         return info;
     }
 
-    public void setInfo(Set<Infos> info) {
-        this.info = info;
-    }
-
     public Patient getPatient() {
         return patient;
     }
@@ -60,7 +62,6 @@ public class Prescription {
     public void setMedecin(Medecin medecin) {
         this.medecin = medecin;
     }
-    
 
     @Override
     public int hashCode() {
@@ -86,6 +87,12 @@ public class Prescription {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Prescription{" + "idpres=" + idpres + ", dateprescription=" + dateprescription + ", info=" + info + ", patient=" + patient + ", medecin=" + medecin + '}';
+    }
     
     
+
 }

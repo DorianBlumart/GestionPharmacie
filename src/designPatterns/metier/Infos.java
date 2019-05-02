@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author dorian.blumart
  */
 public class Infos {
+
     /**
      * unité de mesure du médicament
      */
@@ -22,6 +23,15 @@ public class Infos {
     private int quantite;
     private Medicament medicament;
     private Prescription prescription;
+    private int idinfo;
+
+    public Infos(String unite, int quantite, Medicament medicament, Prescription prescription, int idinfo) {
+        this.unite = unite;
+        this.quantite = quantite;
+        this.prescription = prescription;
+        this.medicament = medicament;
+        this.idinfo = idinfo;
+    }
 
     public String getUnite() {
         return unite;
@@ -83,6 +93,11 @@ public class Infos {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Infos{" + "unite=" + unite + ", quantite=" + quantite + ", medicament=" + medicament + ", prescription=" + prescription + ", idinfo=" + idinfo + '}';
+    }
     
-    
+
 }

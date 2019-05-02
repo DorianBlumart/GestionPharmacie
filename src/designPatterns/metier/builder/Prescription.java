@@ -5,8 +5,9 @@ import designPatterns.metier.Infos;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-import pharmacie.metier.Medecin;
-import pharmacie.metier.Patient;
+import designPatterns.metier.Patient;
+import designPatterns.metier.Medecin;
+
 
 
 /**
@@ -115,6 +116,11 @@ public class Prescription {
             this.medecin = medecin;
             return this;
         }
+
+        public PrescriptionBuilder getInfo() {
+            return this;
+        }
+        
      
         public Prescription build() throws Exception{
             if(idpres<=0 || patient==null || medecin==null || info==null) throw new Exception("informations de construction incomplètes");

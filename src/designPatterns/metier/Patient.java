@@ -1,11 +1,11 @@
-
 package designPatterns.metier;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class Patient {
-         /**
+
+    /**
      * identifiant unique du patient
      */
     private int idpat;
@@ -21,8 +21,15 @@ public class Patient {
      * numéro de téléphone du patient
      */
     private String tel;
-    
+
     private Set<Prescription> prescription = new HashSet<>();
+
+    public Patient(int idpat, String nom, String prenom, String tel) {
+        this.idpat = idpat;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.tel = tel;
+    }
 
     public int getIdpat() {
         return idpat;
@@ -60,10 +67,6 @@ public class Patient {
         return prescription;
     }
 
-    public void setPrescription(Set<Prescription> prescription) {
-        this.prescription = prescription;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -88,6 +91,11 @@ public class Patient {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Patient{" + "idpat=" + idpat + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel + ", prescription=" + prescription + '}';
+    }
     
-    
+
 }
