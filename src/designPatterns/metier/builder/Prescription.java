@@ -1,4 +1,3 @@
-
 package designPatterns.metier.builder;
 
 import designPatterns.metier.Infos;
@@ -8,25 +7,22 @@ import java.util.Set;
 import designPatterns.metier.Patient;
 import designPatterns.metier.Medecin;
 
-
-
 /**
  * classe métier de gestion d'un client
+ *
  * @author Michel Poriaux
  * @version 1.0
- * 
+ *
  */
-
-
 public class Prescription {
+
     protected int idpres;
     protected LocalDate dateprescription;
     protected Set<Infos> info = new HashSet<>();
     protected Patient patient;
     protected Medecin medecin;
 
-
-   private Prescription(PrescriptionBuilder cb) {
+    private Prescription(PrescriptionBuilder cb) {
         this.idpres = cb.idpres;
         this.dateprescription = cb.dateprescription;
         this.info = cb.info;
@@ -84,13 +80,13 @@ public class Prescription {
         return true;
     }
 
-    
-    public static class PrescriptionBuilder{
-    protected int idpres;
-    protected LocalDate dateprescription;
-    protected Set<Infos> info = new HashSet<>();
-    protected Patient patient;
-    protected Medecin medecin;
+    public static class PrescriptionBuilder {
+
+        protected int idpres;
+        protected LocalDate dateprescription;
+        protected Set<Infos> info = new HashSet<>();
+        protected Patient patient;
+        protected Medecin medecin;
 
         public PrescriptionBuilder setIdpres(int idpres) {
             this.idpres = idpres;
@@ -117,16 +113,20 @@ public class Prescription {
             return this;
         }
 
-        public PrescriptionBuilder getInfo() {
+        //méthode add info avec param info et retour this. elle va ajouter dans le set l'info
+        public PrescriptionBuilder addInfo(Infos i) {
+            //this.medecin = medecin;
+            info.add(i);
             return this;
         }
-        
-     
-        public Prescription build() throws Exception{
-            if(idpres<=0 || patient==null || medecin==null || info==null) throw new Exception("informations de construction incomplètes");
+
+        public Prescription build() throws Exception {
+            if (idpres <= 0 || patient == null || medecin == null || info == null) {
+                throw new Exception("informations de construction incomplètes");
+            }
             return new Prescription(this);
         }
 
-}
-    
+    }
+
 }

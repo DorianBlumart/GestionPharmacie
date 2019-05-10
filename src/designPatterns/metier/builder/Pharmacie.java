@@ -29,16 +29,16 @@ public class Pharmacie {
         Infos info1 = new Infos("boite", 2, medoc1, null, 1);      //création de l'infos nécessaire à la prescription 
         System.out.println(info1);
         medoc1.getInfo().add(info1);                                //on ajoute au set d'infos du médciament (dépendance)
-        System.out.println(medoc1);                             //cet affichage se fait mal, mal ajouté info1 au setinfo de médoc ?
+        System.out.println(medoc1);  //cet affichage se fait mal, mal ajouté info1 au setinfo de médoc ?
         try {
             Prescription pres1 = new Prescription.PrescriptionBuilder().
                     setDateprescription(LocalDate.of(2012, 02, 02)).
                     setIdpres(1).
                     setMedecin(med1).
                     setPatient(p1).
-                    setInfo(info1);//getInfo().add(info1) ne fonctionne pas non plus
-                    //il reste à ajouter l'info1 au set d'info de la prescription
-                    ;
+                    addInfo(info1).build();
+            System.out.println(pres1);
+            
         } catch (Exception e) {
             System.out.println("erreur "+e);
 

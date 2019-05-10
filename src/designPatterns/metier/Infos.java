@@ -98,6 +98,5 @@ public class Infos {
     public String toString() {
         return "Infos{" + "unite=" + unite + ", quantite=" + quantite + ", medicament=" + medicament + ", prescription=" + prescription + ", idinfo=" + idinfo + '}';
     }
-    
 
 }

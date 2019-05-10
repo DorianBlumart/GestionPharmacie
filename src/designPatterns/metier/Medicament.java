@@ -95,7 +95,7 @@ public class Medicament {
 
     @Override
     public String toString() {
-        return "Medicament{" + "idmedoc=" + idmedoc + ", nom=" + nom + ", description=" + description + ", codemedoc=" + codemedoc + ", info=" + info + '}';
+        return "Medicament{" + "idmedoc=" + idmedoc + ", nom=" + nom + ", description=" + description + ", codemedoc=" + codemedoc +'}';
     }
     
 
