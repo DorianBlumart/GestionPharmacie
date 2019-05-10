@@ -164,6 +164,10 @@ public class CreaMedicament extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERREUR", JOptionPane.ERROR_MESSAGE);
             }
         }
+        txtnummedoc.setText("");
+        txtnom.setText("");
+        txtcode.setText("");
+        txtdesc.setText("");
 
     }//GEN-LAST:event_btcreateActionPerformed
 

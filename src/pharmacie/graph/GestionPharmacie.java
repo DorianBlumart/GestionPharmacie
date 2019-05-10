@@ -62,6 +62,7 @@ public class GestionPharmacie extends javax.swing.JFrame {
         infosDAO.setConnection(dbConnect);
         rechPresNum.setInfosDAO(infosDAO);
         creaPrescription.setInfosDAO(infosDAO);
+        rechMedocNum.setInfosDAO(infosDAO);
 
         MedicamentDAO medicamentDAO = new MedicamentDAO();
         medicamentDAO.setConnection(dbConnect);

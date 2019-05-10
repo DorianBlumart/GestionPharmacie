@@ -199,12 +199,13 @@ public class RechMedocNum extends javax.swing.JPanel {
     private void btdelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btdelActionPerformed
         try {
             int nummedoc = Integer.parseInt(txtnummedoc.getText());
-            try {
+           try {
                 ((InfosDAO) (infosDAO)).deleteForMedoc(medicament);
                 medicamentDAO.delete(medicament);
             } catch (SQLException f) {
                 medicamentDAO.delete(medicament);
             }
+            //medicamentDAO.delete(medicament);
             txtnummedoc.setText("");
             txtcode.setText("");
             txtnom.setText("");
